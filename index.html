@@ -5,13 +5,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>横スクロール避けゲーム</title>
+        <title>避けゲー</title>
     </head>
 
     <body>
-        <h1>横スクロール避けゲーム</h1>
-        <p>キーボードの「スペースキー」でジャンプ。障害物を避けよう</p>
-        <a href="game.html">ゲームをはじめる</a>
+        <h1>避けゲー</h1>
+        <p>キーボードのspaceキ ーでジャンプ。<br>障害物を避けろ。</p>
+        <canvas id="game_canvas" width="600" height="480"></canvas>
+        <button id="retry_button" style="display: none;" onclick="window.location.reload(true);">もう一度あそぶ</button>
+        <script src="game.js"></script>
     </body>
 
 </html>

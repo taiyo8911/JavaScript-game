@@ -23,7 +23,7 @@ const Scenes = {
 }
 
 
-// 読み込み時に一度だけ実行される
+// 読み込みの1秒後にゲームを開始する
 onload = function () {
   // 描画コンテキストの取得
   canvas = document.getElementById("game_canvas");
@@ -32,9 +32,18 @@ onload = function () {
   init();
   // 入力処理の指定
   document.onkeydown = keydown;
-  // ゲームループの設定 60FPS（1秒間で60回＝16ミリ秒に1回）gameLoopを実行する
-  setInterval("gameLoop()", 16);
+
+  // 1秒後にゲームループ開始
+  // 16ミリ秒に1回（1秒で60回）gameLoopを実行する
+  setTimeout("setInterval('gameLoop()', 16)", 1000);
 };
+
+
+// ゲームループ（更新処理と描画処理を繰り返す）
+function gameLoop() {
+  update();
+  draw();
+}
 
 
 // ゲーム開始時の初期化
@@ -70,13 +79,6 @@ function keydown(e) {
     speed = -20; // Y軸方向の1フレーム当たりの移動距離
     acceleration = 1.5; // 重力
   }
-}
-
-
-// ゲームループ（更新処理と描画処理を繰り返す）
-function gameLoop() {
-  update();
-  draw();
 }
 
 
@@ -119,6 +121,9 @@ function update() {
   } else if (scene == Scenes.GameOver) {
     // 障害物の状態更新
     enemyPositionX += enemySpeed;
+    // リトライボタンを表示
+    var retryButton = document.getElementById("retry_button");
+    retryButton.style.display = "block";
   }
 }
 
